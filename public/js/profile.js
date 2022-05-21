@@ -44,7 +44,6 @@ document.querySelector("#newBlog").addEventListener("submit", e => {
 async function editPage(id) {
     try {
 
-        console.log("id", id)        
         // do stuff
         const res = await fetch(`/api/blogs/${id}`, {
             method: "GET",
