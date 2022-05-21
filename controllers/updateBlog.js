@@ -18,14 +18,11 @@ router.get("/:id", (req, res) => {
   if (!req.session.user) {
     return res.redirect("/home")
   }
-  Blog.findByPk(req.params.id,{
-    include: [User]
-  })
+  Blog.findByPk(req.params.id)
     .then(blogData => {
       console.log("====================")
-      const hbsData = blogData.get({plain:true})
-      console.log(hbsData),
-      res.render("update", hbsData)
+      console.log(blogData);
+      res.render("update", blogData)
     })
     .catch(err => {
       console.log(err);
