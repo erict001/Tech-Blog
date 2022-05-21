@@ -1,10 +1,11 @@
 <h2>All your blogs:</h2>
+<h3>Update page</h3>
 {{#each Blogs}}
-    <input>{{title}}</input>
-    <input>{{body}}</input>
-    <button id="updateBlog">Submit</button>
-    <button>delete</button>
+    <input value="{{title}}" id="title-text{{id}}"/>
+    <input value="{{body}}" id="body-text{{id}}"/>
+    <button onclick="submitPost({{id}})">Submit</button>
+    <button onclick="deletePost({{id}})">delete</button>
     <hr>
 {{/each}}
 
-<script src="/js/profile.js"></script>
+<script src="/js/updateBlog.js"></script>

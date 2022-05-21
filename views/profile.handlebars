@@ -7,7 +7,7 @@
 {{#each Blogs}}
     <h3>{{title}}</h3>
     <p>{{body}}</p>
-    <a href="/api/blogs/{{id}}"><button onclick="editPost({{id}})">edit</button></a>
+    <button onclick="editPage({{id}})">edit</button>
     <button onclick="deletePost({{id}})">delete</button>
     <hr>
 {{/each}}

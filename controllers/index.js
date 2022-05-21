@@ -1,21 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-const userRoutes = require("./userRoutes");
-router.use("/api/users",userRoutes)
-
-const blogRoutes = require("./blogRoutes");
-router.use("/api/blogs",blogRoutes)
+const apiRoutes = require("./api")
+router.use("/api", apiRoutes)
 
 const frontEnd = require("./frontEndRoutes");
 router.use("/",frontEnd)
 
+const blogRoutes = require("./updateBlog");
+router.use("/blog", blogRoutes)
+
 router.get("/showsessions",(req,res)=>{
     res.json(req.session)
 })
-
-// const updatePost = require("./updateBlog");
-// router.use("/api/blogupdate", updatePost)
 
 router.get("/setfaveanimal/:faveanimal",(req,res)=>{
     req.session.favAnimal = req.params.faveanimal;
