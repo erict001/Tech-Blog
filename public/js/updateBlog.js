@@ -1,20 +1,35 @@
-document.querySelector("#updateBlog").addEventListener("submit",e=>{
-    e.preventDefault()
-    const blogObj = {
-        title:document.querySelector("#title").value,
-        body:document.querySelector("#body").value,
+async function editPage(id) {
+    try {
+        const blogObj = {
+            "title": document.querySelector("#title").value,
+            "body": document.querySelector("#body").value,
+        }
+        // do stuff
+        const res = await fetch(`/api/blogs/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(blogObj),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            location.href = "/profile"
+    } catch (error) {
+        console.error(error)
     }
-    fetch("/api/blogs",{
-        method:"PUT",
-        body:JSON.stringify(blogObj),
-        headers:{
-            "Content-Type":"application/json"
-        }
-    }).then(res=>{
-        if(res.ok){
-           res.redirect("/api/blog/:id")
-        } else {
-            alert("trumpet sound")
-        }
-    })
-})
+    console.log(id);
+};
+
+async function deletePost(id) {
+    try {
+        // do stuff
+        const res = await fetch(`/api/blogs/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        location.href = "/profile"
+    } catch (error) {
+        console.error(error)
+    }
+}

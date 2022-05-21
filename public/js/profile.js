@@ -34,7 +34,7 @@ document.querySelector("#newBlog").addEventListener("submit", e => {
 //         }
 //     }).then(res=>{
 //         if(res.ok){
-//            res.redirect("/api/blogupdate/:id")
+//            res.redirect("blog/:id")
 //         } else {
 //             alert("trumpet sound")
 //         }
@@ -43,6 +43,8 @@ document.querySelector("#newBlog").addEventListener("submit", e => {
 
 async function editPage(id) {
     try {
+
+        console.log("id", id)        
         // do stuff
         const res = await fetch(`/api/blogs/${id}`, {
             method: "GET",
@@ -50,6 +52,7 @@ async function editPage(id) {
                 "Content-Type": "application/json"
             }
         })
+        console.log("res", res)
         location.href = `/blog/${id}`
     } catch (error) {
         console.error(error)
