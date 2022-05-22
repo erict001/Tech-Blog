@@ -1,6 +1,9 @@
-<h1>Tech Blog</h1>
 {{#each blogs}}
     <h3>{{title}}</h3>
     <p>{{body}}</p>
+    <p>{{comments}}</p>
+    <button id="addComment">add comment</button>
     <hr>
 {{/each}}
+
+<script src="/public/js/home.js"></script>

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {User,Blog} = require('../models');
+const {User,Blog, Comments} = require('../models');
 
 router.get("/",(req,res)=>{
-    Blog.findAll().then(blogs=>{
+    Blog.findAll({include:[User]}).then(blogs=>{
         const hbsBlogs = blogs.map(blog=>blog.get({plain:true}))
         const loggedIn = req.session.user?true:false
         res.render("home",{blogs:hbsBlogs,loggedIn,username:req.session.user?.username})
@@ -22,7 +22,7 @@ router.get("/profile",(req,res)=>{
         return res.redirect("/login")
     }
     User.findByPk(req.session.user.id,{
-        include:[Blog]
+        include:[Blog, Comments]
     }).then(userData=>{
         console.log(userData);
         const hbsData = userData.get({plain:true})
@@ -37,7 +37,7 @@ router.get("/blog/:id", (req, res) => {
       return res.redirect("/home")
     }
     console.log(req.params.id)
-    Blog.findByPk(req.params.id)
+    Blog.findByPk(req.params.id,{include: [User, {model: Comments, include: [User]}]})
       .then(dbBlog => {
         console.log("====================")
         const blogData = dbBlog.get({plain:true})

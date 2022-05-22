@@ -1,5 +1,5 @@
 const sequelize = require("../config/connection")
-const {User,Blog} = require("../models")
+const {User,Blog, Comments} = require("../models")
 
 const users = [
     {
@@ -30,6 +30,24 @@ const blogs = [
     {
         title:"Cats: a review",
         body:"I love cats I love every kind of cat.  I want to hug all them but you cant. Cant hug every cat......Cant hug every cat. ",
+        UserId:2
+    }
+]
+
+const comments = [
+    {
+        body:"Nice",
+        BlogId:1,
+        UserId:1
+    },
+    {
+        body:"Thank you",
+        BlogId:2,
+        UserId:1
+    },
+    {
+        body:"Hoorah",
+        BlogId:3,
         UserId:2
     }
 ]

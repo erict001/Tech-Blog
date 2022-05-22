@@ -5,9 +5,9 @@ const {User,Blog, Comments} = require("../../models");
 
 //find all
 router.get("/", (req, res) => {
-  Blog.findAll({include:[User, Comments]})
-    .then(dbBlogs => {
-      res.json(dbBlogs);
+  Comments.findAll({})
+    .then(dbComments => {
+      res.json(dbComments);
     })
     .catch(err => {
       console.log(err);
@@ -17,9 +17,9 @@ router.get("/", (req, res) => {
 
 //find one
 router.get("/:id", (req, res) => {
-  Blog.findByPk(req.params.id,{include:[User, Comments]})
-    .then(dbBlog => {
-      res.json(dbBlog);
+  Comments.findByPk(req.params.id,{})
+    .then(dbComments => {
+      res.json(dbComments);
     })
     .catch(err => {
       console.log(err);
@@ -27,18 +27,18 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//create Blog
+//create comment
 router.post("/", (req, res) => {
   if(!req.session.user){
     return res.status(401).json({msg:"ya gotta login to create a blog post!"})
 }
-  Blog.create({
-    title:req.body.title,
+  Comments.create({
     body:req.body.body,
-    UserId:req.session.user.id
+    UserId:req.session.user.id,
+    BlogId: req.body.BlogId
   })
-    .then(newBlog => {
-      res.json(newBlog);
+    .then(newComments => {
+      res.json(newComments);
     })
     .catch(err => {
       console.log(err);
@@ -46,32 +46,14 @@ router.post("/", (req, res) => {
     });
 });
 
-//update Blog
-router.put("/:id", async (req, res) => {
-  try {
-    const blogData = await Blog.update(req.body, 
-    {
-      where: {
-      id: req.params.id
-    },
-    });
-  // .then((updatedBlog) => {
-  //   res.render("update");
-  // })
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: "an error occured", err });
-  }
-});
-
-//delete a Blog
+//delete a comment
 router.delete("/:id", (req, res) => {
-  Blog.destroy({
+  Comments.destroy({
     where: {
       id: req.params.id
     }
-  }).then(delBlog => {
-    res.json(delBlog);
+  }).then(delComments => {
+    res.json(delComments);
   })
   .catch(err => {
     console.log(err);
