@@ -51,4 +51,24 @@ router.get("/blog/:id", (req, res) => {
       });
   });
 
+//localhost:3000/comments/:id
+router.get("/comments/:id", (req, res) => {
+    if (!req.session.user) {
+      return res.redirect("/home")
+    }
+    console.log(req.params.id)
+    Blog.findByPk(req.params.id,{include: [User, {model: Comments, include: [User]}]})
+      .then(dbBlog => {
+        console.log("====================")
+        const blogData = dbBlog.get({plain:true})
+        const loggedIn = req.session.user?true:false
+        console.log(blogData);
+        res.render("comment", {blogs:blogData,loggedIn,username:req.session.user?.username})
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ msg: "an error occured", err });
+      });
+  });
+
 module.exports = router;

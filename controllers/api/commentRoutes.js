@@ -4,6 +4,7 @@ const {User,Blog, Comments} = require("../../models");
 
 
 //find all
+//localhost:3000/api/comments
 router.get("/", (req, res) => {
   Comments.findAll({})
     .then(dbComments => {
@@ -16,6 +17,7 @@ router.get("/", (req, res) => {
 });
 
 //find one
+//localhost:3000/api/comments/:id
 router.get("/:id", (req, res) => {
   Comments.findByPk(req.params.id,{})
     .then(dbComments => {
@@ -28,13 +30,14 @@ router.get("/:id", (req, res) => {
 });
 
 //create comment
+//localhost:3000/api/comments
 router.post("/", (req, res) => {
-  if(!req.session.user){
-    return res.status(401).json({msg:"ya gotta login to create a blog post!"})
-}
+//   if(!req.session.user){
+//     return res.status(401).json({msg:"ya gotta login to create a blog post!"})
+// }
   Comments.create({
     body:req.body.body,
-    UserId:req.session.user.id,
+    UserId:req.session.UserId,
     BlogId: req.body.BlogId
   })
     .then(newComments => {

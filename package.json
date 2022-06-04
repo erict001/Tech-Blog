@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/erict001/Tech-Blog.git"
+    "url": "git+https://github.com/Rufasa85/sess-auth.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/erict001/Tech-Blog/issues"
+    "url": "https://github.com/Rufasa85/sess-auth/issues"
   },
-  "homepage": "https://github.com/erict001/Tech-Blog#readme",
+  "homepage": "https://github.com/Rufasa85/sess-auth#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.3",

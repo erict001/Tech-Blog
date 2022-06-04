@@ -9,10 +9,6 @@ Comments.init({
         type:DataTypes.TEXT,
         allowNull:false
     },
-    date: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-    }
 },{
     sequelize,
     freezeTableName: true,
