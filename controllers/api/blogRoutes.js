@@ -54,10 +54,10 @@ router.put("/:id", async (req, res) => {
       where: {
       id: req.params.id
     },
-    });
-  // .then((updatedBlog) => {
-  //   res.render("update");
-  // })
+    })
+  .then((updatedBlog) => {
+    res.redirect("/home");
+  })
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: "an error occured", err });

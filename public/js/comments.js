@@ -1,4 +1,4 @@
-const req = require("express/lib/request");
+// const req = require("express/lib/request");
 
 async function addComment(id) {
     try {
@@ -14,7 +14,7 @@ async function addComment(id) {
                 "Content-Type": "application/json"
             }
         })
-            location.href = '/'
+            location.href = '/profile'
     } catch (error) {
         console.error(error)
     }

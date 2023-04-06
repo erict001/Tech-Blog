@@ -16,7 +16,7 @@ document.querySelector("#login").addEventListener("submit",e=>{
         if(res.ok){
             location.href="/profile"
         } else {
-            alert("trumpet sound")
+            alert("Your username and/or password ")
         }
     })
 })
@@ -28,7 +28,7 @@ document.querySelector("#signup").addEventListener("submit",e=>{
         password:document.querySelector("#signupPassword").value,
     }
     console.log(userObj)
-    fetch("/api/users/",{
+    fetch("/api/users",{
         method:"POST",
         body:JSON.stringify(userObj),
         headers:{
